@@ -1,3 +1,18 @@
+import SpinButton from "../SpinButton";
+import {
+  BottomArea,
+  Buttons,
+  Card,
+  Description,
+  DisplayCards,
+  Real,
+  ShoppingCartButton,
+  Tag,
+  Title,
+  Valor,
+} from "./styles";
+import { PiShoppingCartSimpleFill } from "react-icons/pi";
+
 interface Item {
   titulo: string;
   descricao: string;
@@ -12,18 +27,34 @@ interface CardProps {
 
 export default function Cards({ itens }: CardProps) {
   return (
-    <ul>
+    <DisplayCards>
       {itens.map((item) => {
         return (
-          <li key={item.id}>
+          <Card key={item.id}>
             <img src={item.imagem} alt={item.titulo} />
-            <p>{item.tag}</p>
-            <p>{item.titulo}</p>
-            <p>{item.descricao}</p>
-            <p>{item.preco}</p>
-          </li>
+            <div>
+              {item.tag.map((tag, index) => (
+                <Tag key={index}>{tag}</Tag>
+              ))}
+            </div>
+
+            <Title>{item.titulo}</Title>
+            <Description>{item.descricao}</Description>
+            <BottomArea>
+              <div>
+                <Real>R$</Real>
+                <Valor>{item.preco}</Valor>
+              </div>
+              <Buttons>
+                <SpinButton />
+                <ShoppingCartButton>
+                  <PiShoppingCartSimpleFill size={22} />
+                </ShoppingCartButton>
+              </Buttons>
+            </BottomArea>
+          </Card>
         );
       })}
-    </ul>
+    </DisplayCards>
   );
 }
