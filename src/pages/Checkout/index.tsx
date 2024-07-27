@@ -1,12 +1,12 @@
 import {
   AddressForms,
   AddressInput,
-  AddressPayment,
   ButtonSelect,
+  ContainerLeft,
+  ContainerRight,
   DisplayCheckout,
   FinalizingOrder,
   OrderSummary,
-  PaymentOptionsDisplay,
   Title,
 } from "./styles";
 
@@ -15,6 +15,7 @@ import Dollar from "/src/assets/icons/dollar.svg";
 import CreditCard from "/src/assets/icons/creditCard.svg";
 import Bank from "/src/assets/icons/bank.svg";
 import Money from "/src/assets/icons/money.svg";
+import { CardsCheckout } from "../../components/CardsCheckout";
 interface CheckBoxProps {
   icon: string;
   text: string;
@@ -38,7 +39,7 @@ export function Checkout() {
     <DisplayCheckout>
       <FinalizingOrder>
         <Title>Complete seu pedido</Title>
-        <AddressPayment>
+        <ContainerLeft>
           <div>
             <img src={Local} alt="" />
             <div>
@@ -55,8 +56,8 @@ export function Checkout() {
             <AddressInput type="text" placeholder="Cidade" id="Input6" />
             <AddressInput type="text" placeholder="UF" id="Input7" />
           </AddressForms>
-        </AddressPayment>
-        <AddressPayment>
+        </ContainerLeft>
+        <ContainerLeft>
           <div>
             <img src={Dollar} alt="" />
             <div>
@@ -67,14 +68,34 @@ export function Checkout() {
             </div>
           </div>
           <div>
-            <CheckBox icon={CreditCard} text="cartão de crédito" id="1"/>
-            <CheckBox icon={Bank} text="cartão de débito" id="2"/>
-            <CheckBox icon={Money} text="dinheiro" id="3"/>
+            <CheckBox icon={CreditCard} text="crédito" id="1" />
+            <CheckBox icon={Bank} text="débito" id="2" />
+            <CheckBox icon={Money} text="dinheiro" id="3" />
           </div>
-        </AddressPayment>
+        </ContainerLeft>
       </FinalizingOrder>
       <OrderSummary>
         <Title>Cafés selecionados</Title>
+        <ContainerRight>
+          <CardsCheckout
+            image="./src/assets/cafes/Americano.png"
+            name="Americano"
+            price="9.90"
+            quantity={2}
+          />
+          <CardsCheckout
+            image="./src/assets/cafes/Americano.png"
+            name="Americano"
+            price="9.90"
+            quantity={2}
+          />
+          <CardsCheckout
+            image="./src/assets/cafes/Americano.png"
+            name="Americano"
+            price="9.90"
+            quantity={2}
+          />
+        </ContainerRight>
       </OrderSummary>
     </DisplayCheckout>
   );

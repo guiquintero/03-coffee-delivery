@@ -23,7 +23,7 @@ export const Title = styled.h2`
   margin-bottom: 15px;
 `;
 
-export const AddressPayment = styled.div`
+export const ContainerLeft = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -93,17 +93,47 @@ export const AddressInput = styled.input`
 
 
 export const ButtonSelect = styled.div`
+display: flex;
+
   font-size: 14px;
   width: 33%;
+  
   input {
     display: none;
   }
 
   label {
     display: flex;
-    gap: 0rem;
+    gap: 0.75rem;
     padding: 1rem;
     background-color: ${(props) => props.theme.base_button};
+    width: 100%;
+    font-size: 14px;
     border-radius: 8px;
+  }
+`;
+
+export const ContainerRight = styled.section`
+  display: flex;
+  flex-direction: column;
+  background-color: ${(props) => props.theme.base_card};
+  border-radius: 6px 44px;
+  padding: 40px;
+  margin-bottom: 0.75rem;
+
+  > div {
+    display: flex;
+    gap: 0.5rem;
+    align-items: start;
+  }
+  h3 {
+    color: ${(props) => props.theme.base_subtitle};
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 2px;
+  }
+  p {
+    font-size: 14px;
+    color: ${(props) => props.theme.base_text};
   }
 `;

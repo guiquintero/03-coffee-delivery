@@ -3,8 +3,13 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { useState } from "react";
 import { Button, Input, SpinButtonDiv } from "./styles";
 
-export default function SpinButton() {
-  const [value, setValue] = useState(1);
+interface SpinButtonProps {
+  initialValue?: number;
+  id?: string;
+}
+
+export default function SpinButton({ initialValue }: SpinButtonProps) {
+  const [value, setValue] = useState(initialValue ?? 1);
 
   const decrement = () => {
     if (value > 1) {
