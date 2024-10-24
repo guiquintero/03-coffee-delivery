@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-export const DisplayCheckout = styled.section`
+export const DisplayCheckout = styled.form`
   display: flex;
   flex-direction: row;
   padding: 0 auto;
@@ -49,7 +49,7 @@ export const ContainerLeft = styled.div`
   }
 `;
 
-export const AddressForms = styled.form`
+export const AddressForms = styled.section`
   display: grid;
   grid-template-columns: 200px 276px 60px;
   row-gap: 1rem;
@@ -103,6 +103,7 @@ display: flex;
   }
 
   label {
+    box-sizing: border-box;
     display: flex;
     gap: 0.75rem;
     padding: 1rem;
@@ -110,6 +111,11 @@ display: flex;
     width: 100%;
     font-size: 14px;
     border-radius: 8px;
+  }
+
+  input:checked + label {
+    border: 1px solid ${(props) => props.theme.purple_300};
+    background-color: ${(props) => props.theme.purple_100};
   }
 `;
 
@@ -135,5 +141,39 @@ export const ContainerRight = styled.section`
   p {
     font-size: 14px;
     color: ${(props) => props.theme.base_text};
+  }
+`;
+
+export const FinalizingOrderPrice = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  >div{
+    display: flex;
+    justify-content: space-between;
+    >h4{
+    font-size: 20px;
+    color: ${(props) => props.theme.base_subtitle};
+  }
+  }
+  
+`;
+
+export const Button = styled.button`
+  background-color: ${(props) => props.theme.yellow_300};
+  color: ${(props) => props.theme.white};
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 1.5rem;
+  &:hover {
+    background-color: ${(props) => props.theme.yellow_500};
+  }
+  &:disabled {
+    background-color: ${(props) => props.theme.yellow_100};
+    cursor: not-allowed;
   }
 `;
