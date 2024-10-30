@@ -93,8 +93,7 @@ export const AddressInput = styled.input`
 
 
 export const ButtonSelect = styled.div`
-display: flex;
-
+  display: flex;
   font-size: 14px;
   width: 33%;
   
@@ -111,6 +110,8 @@ display: flex;
     width: 100%;
     font-size: 14px;
     border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid transparent;
   }
 
   input:checked + label {

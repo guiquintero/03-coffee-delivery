@@ -17,10 +17,15 @@ export const Button = styled.button`
   color: ${(props) => props.theme.purple_300};
   border: none;
   background-color: transparent;
+  border-radius: 20px;
+  width: 14px;
+  height: 14px;
   align-items: center;
+  margin-bottom: 4px;
 
   &:hover {
     color: ${(props) => props.theme.purple_500};
+    background-color:rgba(0,0,0,0.1);
   }
 `;
 

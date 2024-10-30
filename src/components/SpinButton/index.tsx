@@ -6,20 +6,25 @@ import { Button, Input, SpinButtonDiv } from "./styles";
 interface SpinButtonProps {
   initialValue?: number;
   id?: string;
+  onChange?: (value: number) => void;
 }
 
-export default function SpinButton({ initialValue }: SpinButtonProps) {
+export default function SpinButton({ initialValue, onChange }: SpinButtonProps) {
   const [value, setValue] = useState(initialValue ?? 1);
 
   const decrement = () => {
     if (value > 1) {
-      setValue(value - 1);
+      const newValue = value - 1;
+      setValue(newValue);
+      if (onChange) onChange(newValue);
     }
   };
 
   const increment = () => {
     if (value < 10) {
-      setValue(value + 1);
+      const newValue = value + 1;
+      setValue(newValue);
+      if (onChange) onChange(newValue);
     }
   };
 

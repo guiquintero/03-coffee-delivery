@@ -25,6 +25,7 @@ import {
   checkoutSchema as schema,
   CheckoutZodProps as ZodProps,
 } from "./schemas";
+import { useState } from "react";
 
 interface CheckBoxProps {
   icon: string;
@@ -45,8 +46,27 @@ function CheckBox({ icon, text, id, register }: CheckBoxProps) {
   );
 }
 
+interface OrderSummary {
+  id: string;
+  address: {
+    cep: string;
+    rua: string;
+    numero: string;
+    bairro: string;
+    cidade: string;
+    uf: string;
+    complemento?: string;
+  };
+  paymentMethod: string;
+  items: {
+    name: string;
+    price: number;
+    quantity: number;
+  }[];
+}
+
 export function Checkout() {
-  const { register, handleSubmit, watch, reset } = useForm<ZodProps>({
+  const { register, handleSubmit, watch, reset, formState } = useForm<ZodProps>({
     resolver: zodResolver(schema),
     defaultValues:{
       cep: "",
@@ -60,6 +80,8 @@ export function Checkout() {
     }
   });
 
+  const [orderSummary, setOrderSummary] = useState<OrderSummary | null>(null);
+
   let isSubmitDisabled = !(
     watch("cep") &&
     watch("rua") &&
@@ -72,9 +94,43 @@ export function Checkout() {
 
   function handleOrder(data: ZodProps) {
     console.log(data);
+
+    const newOrderSummary: OrderSummary = {
+      id: String(new Date().getTime()),
+      address: {
+        cep: data.cep,
+        rua: data.rua,
+        numero: data.numero,
+        bairro: data.bairro,
+        cidade: data.cidade,
+        uf: data.uf,
+        complemento: data.complemento,
+      },
+      paymentMethod: data.paymentMethod,
+      items: [
+        {
+          name: "Americano",
+          price: 9.9,
+          quantity: 2,
+        },
+        {
+          name: "Cappuccino",
+          price: 12.9,
+          quantity: 1,
+        },
+        {
+          name: "Expresso",
+          price: 6.9,
+          quantity: 3,
+        },
+      ],
+    }
+
     reset();
     isSubmitDisabled = false;
   }
+  
+ 
 
  
 
@@ -97,6 +153,7 @@ export function Checkout() {
               id="Input1"
               {...register("cep")}
             />
+            <span>{formState.errors.cep?.message}</span>
             <AddressInput
               type="text"
               placeholder="Rua"
@@ -133,6 +190,7 @@ export function Checkout() {
               id="Input7"
               {...register("uf")}
             />
+            <span>{formState.errors.uf?.message}</span>
           </AddressForms>
         </ContainerLeft>
         <ContainerLeft>

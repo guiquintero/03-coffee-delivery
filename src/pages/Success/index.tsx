@@ -23,7 +23,7 @@ export function Success() {
                 <IoLocationSharp />
               </Icon>
               <p>
-                Entrega em Rua João Daniel Martinelli, 102
+                Entrega em <b>Rua João Daniel Martinelli, 102</b>
                 <br />
                 Farrapos - Porto Alegre, RS
               </p>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import SpinButton from "../SpinButton";
 import {
   BottomArea,
@@ -21,11 +22,42 @@ interface Item {
   tag: string[];
   preco: string;
 }
+
 interface CardProps {
   itens: Item[];
 }
 
+interface CartItem {
+  products: {
+    name: string;
+    price: number;
+    quantity: number;
+  };
+}
+
 export default function Cards({ itens }: CardProps) {
+
+  const [spinValue, setSpinValue] = useState(1);
+
+  const handleSpinChange = (value: number) => {
+    setSpinValue(value);
+  };
+
+  const [cart, setCart] = useState<CartItem[]>([]);
+
+  function handleAddToCart(item: Item, quantity: number) {
+    const addProduct:CartItem = {
+      products: {
+          name: item.titulo,
+          price: parseFloat(item.preco),
+          quantity: quantity,
+        }
+    }
+    setCart([...cart, addProduct]);
+    console.log(cart);
+  }
+
+
   return (
     <DisplayCards>
       {itens.map((item) => {
@@ -46,8 +78,8 @@ export default function Cards({ itens }: CardProps) {
                 <Valor>{item.preco}</Valor>
               </div>
               <Buttons>
-                <SpinButton />
-                <ShoppingCartButton>
+                <SpinButton initialValue={spinValue} onChange={handleSpinChange}/>
+                <ShoppingCartButton onClick={() => handleAddToCart(item, spinValue)}>
                   <PiShoppingCartSimpleFill size={22} />
                 </ShoppingCartButton>
               </Buttons>
