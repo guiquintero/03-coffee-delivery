@@ -13,6 +13,7 @@ import {
   Valor,
 } from "./styles";
 import { PiShoppingCartSimpleFill } from "react-icons/pi";
+import { useCart } from "../../contexts/CartContext";
 
 interface Item {
   titulo: string;
@@ -20,42 +21,32 @@ interface Item {
   imagem: string;
   id: string;
   tag: string[];
-  preco: string;
+  preco: number;
 }
 
 interface CardProps {
   itens: Item[];
 }
 
-interface CartItem {
-  products: {
-    name: string;
-    price: number;
-    quantity: number;
-  };
-}
 
 export default function Cards({ itens }: CardProps) {
 
-  const [spinValue, setSpinValue] = useState(1);
+  const [spinValue, setSpinValue] = useState(0);
+  const { addToCart } = useCart();
 
   const handleSpinChange = (value: number) => {
     setSpinValue(value);
   };
 
-  const [cart, setCart] = useState<CartItem[]>([]);
-
-  function handleAddToCart(item: Item, quantity: number) {
-    const addProduct:CartItem = {
-      products: {
-          name: item.titulo,
-          price: parseFloat(item.preco),
-          quantity: quantity,
-        }
-    }
-    setCart([...cart, addProduct]);
-    console.log(cart);
-  }
+  const handleAddToCart = (item: Item) => {
+    const addProduct = {
+      name: item.titulo,
+      price: item.preco,
+      quantity: spinValue,
+      image: item.imagem,
+    };
+    addToCart(addProduct);
+  };
 
 
   return (
@@ -78,8 +69,8 @@ export default function Cards({ itens }: CardProps) {
                 <Valor>{item.preco}</Valor>
               </div>
               <Buttons>
-                <SpinButton initialValue={spinValue} onChange={handleSpinChange}/>
-                <ShoppingCartButton onClick={() => handleAddToCart(item, spinValue)}>
+                <SpinButton initialValue={spinValue} onChange={handleSpinChange} />
+                <ShoppingCartButton onClick={() => handleAddToCart(item)}>
                   <PiShoppingCartSimpleFill size={22} />
                 </ShoppingCartButton>
               </Buttons>

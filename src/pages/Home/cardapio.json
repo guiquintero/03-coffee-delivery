@@ -5,7 +5,7 @@
     "imagem": "./src/assets/cafes/Expresso.png",
     "id": "1",
     "tag": ["Tradicional"],
-    "preco": "9,91"
+    "preco": 9.91
   },
   {
     "titulo": "Expresso Americano",
@@ -13,7 +13,7 @@
     "imagem": "./src/assets/cafes/Americano.png",
     "id": "2",
     "tag": ["Tradicional"],
-    "preco": "9,92"
+    "preco": 9.92
   },
   {
     "titulo": "Expresso Cremoso",
@@ -21,7 +21,7 @@
     "imagem": "./src/assets/cafes/Expresso_Cremoso.png",
     "id": "3",
     "tag": ["Tradicional"],
-    "preco": "9,93"
+    "preco": 9.93
   },
   {
     "titulo": "Expresso Gelado",
@@ -29,7 +29,7 @@
     "imagem": "./src/assets/cafes/Cafe_Gelado.png",
     "id": "4",
     "tag": ["Tradicional","Gelado"],
-    "preco": "9,94"
+    "preco": 9.94
   },
   {
     "titulo": "Café com Leite",
@@ -37,7 +37,7 @@
     "imagem": "./src/assets/cafes/Cafe_com_Leite.png",
     "id": "5",
     "tag": ["Tradicional","Com leite"],
-    "preco": "9,95"
+    "preco": 9.95
   },
   {
     "titulo": "Latte",
@@ -45,7 +45,7 @@
     "imagem": "./src/assets/cafes/Latte.png",
     "id": "6",
     "tag": ["Tradicional","Com leite"],
-    "preco": "9,96"
+    "preco": 9.96
   },
   {
     "titulo": "Capuccino",
@@ -53,7 +53,7 @@
     "imagem": "./src/assets/cafes/Capuccino.png",
     "id": "7",
     "tag": ["Tradicional","Com leite"],
-    "preco": "9,97"
+    "preco": 9.97
   },
   {
     "titulo": "Macchiato",
@@ -61,7 +61,7 @@
     "imagem": "./src/assets/cafes/Macchiato.png",
     "id": "8",
     "tag": ["Tradicional","Com leite"],
-    "preco": "9,98"
+    "preco": 9.98
   },
   {
     "titulo": "Mocaccino",
@@ -69,7 +69,7 @@
     "imagem": "./src/assets/cafes/Mocaccino.png",
     "id": "9",
     "tag": ["Tradicional","Com leite"],
-    "preco": "9,99"
+    "preco": 9.99
   },
   {
     "titulo": "Chocolate Quente",
@@ -77,7 +77,7 @@
     "imagem": "./src/assets/cafes/Chocolate_Quente.png",
     "id": "10",
     "tag": ["Especial","Com leite"],
-    "preco": "10,00"
+    "preco": 10.00
   },
   {
     "titulo": "Cubano",
@@ -85,7 +85,7 @@
     "imagem": "./src/assets/cafes/Cubano.png",
     "id": "11",
     "tag": ["Especial","Alcoólico","Gelado"],
-    "preco": "10,01"
+    "preco": 10.01
   },
   {
     "titulo": "Havaiano",
@@ -93,7 +93,7 @@
     "imagem": "./src/assets/cafes/Havaiano.png",
     "id": "12",
     "tag": ["Tradicional","Com chantilly"],
-    "preco": "10,02"
+    "preco": 10.02
   },
   {
     "titulo": "Árabe",
@@ -101,7 +101,7 @@
     "imagem": "./src/assets/cafes/Arabe.png",
     "id": "13",
     "tag": ["Especial"],
-    "preco": "10,03"
+    "preco": 10.03
   },
   {
     "titulo": "Irlandês",
@@ -109,6 +109,6 @@
     "imagem": "./src/assets/cafes/Irlandes.png",
     "id":"14",
     "tag": ["Especial","Alcoólico"],
-    "preco": "10,04"
+    "preco": 10.04
   }
 ]

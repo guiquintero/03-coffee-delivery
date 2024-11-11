@@ -1,3 +1,11 @@
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  checkoutSchema as schema,
+  CheckoutZodProps as ZodProps,
+} from "./schemas";
+import { useState } from "react";
+import { useCart } from "../../contexts/CartContext";
 import {
   AddressForms,
   AddressInput,
@@ -11,21 +19,13 @@ import {
   OrderSummary,
   Title,
 } from "./styles";
-
 import Local from "/src/assets/icons/local.svg";
 import Dollar from "/src/assets/icons/dollar.svg";
 import CreditCard from "/src/assets/icons/creditCard.svg";
 import Bank from "/src/assets/icons/bank.svg";
 import Money from "/src/assets/icons/money.svg";
 import { CardsCheckout } from "../../components/CardsCheckout";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as zod from "zod";
-import {
-  checkoutSchema as schema,
-  CheckoutZodProps as ZodProps,
-} from "./schemas";
-import { useState } from "react";
+import { itemCartInterface } from "../../interfaces/itemCartInterface";
 
 interface CheckBoxProps {
   icon: string;
@@ -58,11 +58,7 @@ interface OrderSummary {
     complemento?: string;
   };
   paymentMethod: string;
-  items: {
-    name: string;
-    price: number;
-    quantity: number;
-  }[];
+  items: itemCartInterface[];
 }
 
 export function Checkout() {
@@ -80,6 +76,7 @@ export function Checkout() {
     }
   });
 
+  const { cart } = useCart();
   const [orderSummary, setOrderSummary] = useState<OrderSummary | null>(null);
 
   let isSubmitDisabled = !(
@@ -107,32 +104,12 @@ export function Checkout() {
         complemento: data.complemento,
       },
       paymentMethod: data.paymentMethod,
-      items: [
-        {
-          name: "Americano",
-          price: 9.9,
-          quantity: 2,
-        },
-        {
-          name: "Cappuccino",
-          price: 12.9,
-          quantity: 1,
-        },
-        {
-          name: "Expresso",
-          price: 6.9,
-          quantity: 3,
-        },
-      ],
+      items: cart,
     }
-
+    setOrderSummary(newOrderSummary);
     reset();
     isSubmitDisabled = false;
   }
-  
- 
-
- 
 
   return (
     <DisplayCheckout onSubmit={handleSubmit(handleOrder)}>
@@ -219,37 +196,29 @@ export function Checkout() {
         <Title>Cafés selecionados</Title>
         <ContainerRight>
           <section>
-            <CardsCheckout
-              image="./src/assets/cafes/Americano.png"
-              name="Americano"
-              price="9.90"
-              quantity={2}
-            />
-            <CardsCheckout
-              image="./src/assets/cafes/Americano.png"
-              name="Americano"
-              price="9.90"
-              quantity={2}
-            />
-            <CardsCheckout
-              image="./src/assets/cafes/Americano.png"
-              name="Americano"
-              price="9.90"
-              quantity={2}
-            />
+          {cart.map((item, index) => (
+              <CardsCheckout
+                key={index}
+                image={item.image}
+                name={item.name}
+                price={item.price.toFixed(2)}
+                quantity={item.quantity}
+              />
+            
+            ))}
           </section>
           <FinalizingOrderPrice>
-            <div>
+          <div>
               <span>Total de itens</span>
-              <span>R$ 20,00</span>
+              <span>R$ {cart.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2)}</span>
             </div>
             <div>
-              <span>Entraga</span>
+              <span>Entrega</span>
               <span>R$ 3,50</span>
             </div>
             <div>
               <h4>Total</h4>
-              <h4>R$ 23,50</h4>
+              <h4>R$ {(cart.reduce((total, item) => total + item.price * item.quantity, 0) + 3.50).toFixed(2)}</h4>
             </div>
           </FinalizingOrderPrice>
           <Button type="submit" disabled={isSubmitDisabled}>
